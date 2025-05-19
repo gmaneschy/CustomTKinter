@@ -14,29 +14,31 @@ janela.mainloop()"""
 
 import customtkinter
 
-customtkinter.set_appearance_mode("dark")
-customtkinter.set_default_color_theme("dark-blue")
+class App(customtkinter.CTk):
+    def __init__(self):
+        super().__init__()
+        customtkinter.set_appearance_mode("dark")
+        customtkinter.set_default_color_theme("dark-blue")
+        self.geometry("500x300")
+        self.title("Tela de Login")
 
-def clique():
-    print("Fazer Login")
+        self.texto = customtkinter.CTkLabel(self, text="Fazer Login")
+        self.texto.pack(padx=10, pady=10)
 
-janela = customtkinter.CTk()
-janela.geometry("500x300")
+        self.email = customtkinter.CTkEntry(self, placeholder_text="Seu e-mail")
+        self.email.pack(padx=10, pady=10)
 
-texto = customtkinter.CTkLabel(janela, text="Fazer Login")
-texto.pack(padx=10, pady=10)
+        self.senha = customtkinter.CTkEntry(self, placeholder_text="Sua senha", show="*")
+        self.senha.pack(padx=10, pady=10)
 
-email = customtkinter.CTkEntry(janela, placeholder_text="Seu e-mail")
-email.pack(padx=10, pady=10)
+        self.checkbox = customtkinter.CTkCheckBox(self, text="Lembrar Login")
+        self.checkbox.pack(padx=10, pady=10)
 
-senha = customtkinter.CTkEntry(janela, placeholder_text="Sua senha", show="*")
-senha.pack(padx=10, pady=10)
+        self.botao = customtkinter.CTkButton(self, text="Login", command=self.clique)
+        self.botao.pack(padx=10, pady=10)
 
-checkbox = customtkinter.CTkCheckBox(janela, text="Lembrar Login")
-checkbox.pack(padx=10, pady=10)
+    def clique(self):
+        print("Fazer Login")
 
-botao = customtkinter.CTkButton(janela,text="Login", command=clique)
-botao.pack(padx=10, pady=10)
-
-
-janela.mainloop()
+app = App()
+app.mainloop()
